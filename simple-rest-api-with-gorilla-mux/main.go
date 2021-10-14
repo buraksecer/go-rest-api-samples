@@ -36,10 +36,11 @@ func notFound(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(`{"message": "not found"}`))
 }
 
+//localhost:8080/api/v1/test
 func main() {
 	r := mux.NewRouter()
 	api := r.PathPrefix("/api/v1").Subrouter()
-	api.HandleFunc("", get).Methods(http.MethodGet)
+	api.HandleFunc("/test", get).Methods(http.MethodGet)
 	api.HandleFunc("", post).Methods(http.MethodPost)
 	api.HandleFunc("", put).Methods(http.MethodPut)
 	api.HandleFunc("", delete).Methods(http.MethodDelete)
