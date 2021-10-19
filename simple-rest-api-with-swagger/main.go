@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	_ "github.com/buraksecer/go-rest-api-samples/docs"
 	"github.com/buraksecer/go-rest-api-samples/startups"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -25,6 +26,9 @@ import (
 // @BasePath /
 //go:generate swag init
 func main() {
+	//(http://localhost:8080/swagger/index.html)
+	//username:burak
+	//password:1
 	fmt.Println("Api is starting...")
 
 	router := gin.Default()

@@ -25,7 +25,7 @@ func (t *TokenServiceImpl) CreateToken(request *models.CreateTokenRequest) *mode
 		Token:   "Can not created token! Username password is incorrect!",
 	}
 
-	if "caglar" == request.Username && "12345" == request.Password {
+	if "buraksecer" == request.Username && "1" == request.Password {
 		response.Success = true
 		response.Token = uuid.New().String()
 		// We validated username and password and we returned success case response.
