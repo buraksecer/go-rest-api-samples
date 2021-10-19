@@ -31,17 +31,16 @@ func main() {
 	router.RouterGroup.Handlers = router.RouterGroup.Handlers[0:0]
 	router.Use(gin.Recovery())
 	router.Use(cors.Default())
-
 	controllerArray := startups.Initialize()
 
 	for _, key := range *controllerArray {
+		// We register all controller and service
 		key.Register(router)
 	}
-
+	// This configurations for swagger.
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	router.GET("/healthcheck", func(context *gin.Context) {
 		context.Status(http.StatusOK)
 	})
 	router.Run()
-
 }
