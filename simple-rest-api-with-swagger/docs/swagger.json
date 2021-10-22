@@ -16,5 +16,54 @@
         "version": "1.0"
     },
     "basePath": "/",
-    "paths": {}
+    "paths": {
+        "/create-token": {
+            "post": {
+                "description": "Create new token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create new token",
+                "operationId": "create-token",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateTokenResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateTokenResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateTokenResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.CreateTokenResponse": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "description": "Success type is bool",
+                    "type": "boolean"
+                },
+                "token": {
+                    "description": "Token type is string",
+                    "type": "string"
+                }
+            }
+        }
+    }
 }

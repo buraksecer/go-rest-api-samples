@@ -1,8 +1,8 @@
 package startups
 
 import (
-	"github.com/buraksecer/go-rest-api-samples/controllers"
-	"github.com/buraksecer/go-rest-api-samples/services"
+	"github.com/buraksecer/go-rest-api-samples/simple-rest-api-with-swagger/controllers"
+	"github.com/buraksecer/go-rest-api-samples/simple-rest-api-with-swagger/services"
 )
 
 func Initialize() *[]controllers.Controller {

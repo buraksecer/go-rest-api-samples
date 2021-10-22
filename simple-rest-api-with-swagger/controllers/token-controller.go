@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"github.com/buraksecer/go-rest-api-samples/models"
-	"github.com/buraksecer/go-rest-api-samples/services"
+	"github.com/buraksecer/go-rest-api-samples/simple-rest-api-with-swagger/models"
+	"github.com/buraksecer/go-rest-api-samples/simple-rest-api-with-swagger/services"
 	"github.com/gin-gonic/gin"
 )
 

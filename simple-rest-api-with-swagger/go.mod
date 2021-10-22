@@ -1,4 +1,4 @@
-module github.com/buraksecer/go-rest-api-samples
+module github.com/buraksecer/go-rest-api-samples/simple-rest-api-with-swagger
 
 go 1.17
 

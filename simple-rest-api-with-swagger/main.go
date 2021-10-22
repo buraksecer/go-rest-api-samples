@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	_ "github.com/buraksecer/go-rest-api-samples/docs"
-	"github.com/buraksecer/go-rest-api-samples/startups"
+	_ "github.com/buraksecer/go-rest-api-samples/simple-rest-api-with-swagger/docs"
+	"github.com/buraksecer/go-rest-api-samples/simple-rest-api-with-swagger/startups"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"

@@ -1,4 +1,4 @@
-module main
+module github.com/buraksecer/go-rest-api-samples/simple-rest-api-with-echo
 
 go 1.17
 

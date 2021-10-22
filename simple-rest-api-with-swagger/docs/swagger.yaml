@@ -1,4 +1,14 @@
 basePath: /
+definitions:
+  models.CreateTokenResponse:
+    properties:
+      success:
+        description: Success type is bool
+        type: boolean
+      token:
+        description: Token type is string
+        type: string
+    type: object
 info:
   contact:
     email: burakscr@gmail.com
@@ -11,5 +21,27 @@ info:
   termsOfService: http://swagger.io/terms/
   title: Go Project
   version: "1.0"
-paths: {}
+paths:
+  /create-token:
+    post:
+      consumes:
+      - application/json
+      description: Create new token
+      operationId: create-token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CreateTokenResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.CreateTokenResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.CreateTokenResponse'
+      summary: Create new token
 swagger: "2.0"

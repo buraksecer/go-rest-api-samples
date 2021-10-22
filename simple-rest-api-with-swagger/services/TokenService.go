@@ -2,7 +2,7 @@ package services
 
 import (
 	"fmt"
-	"github.com/buraksecer/go-rest-api-samples/models"
+	"github.com/buraksecer/go-rest-api-samples/simple-rest-api-with-swagger/models"
 	"github.com/google/uuid"
 )
 
@@ -17,6 +17,16 @@ func NewTokenService() TokenService {
 	return &TokenServiceImpl{}
 }
 
+// CreateToken godoc
+// @Summary Create new token
+// @Description Create new token
+// @ID create-token
+// @Accept json
+// @Produce json
+// @Success 200 {object} models.CreateTokenResponse
+// @Success 400 {object} models.CreateTokenResponse
+// @Success 500 {object} models.CreateTokenResponse
+// @Router /create-token [post]
 func (t *TokenServiceImpl) CreateToken(request *models.CreateTokenRequest) *models.CreateTokenResponse {
 	fmt.Println("Create Token Request, username:" + request.Username + " Password: " + request.Password)
 	// We created fail case response
