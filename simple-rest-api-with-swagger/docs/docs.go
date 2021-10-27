@@ -43,23 +43,82 @@ var doc = `{
                 ],
                 "summary": "Create new token",
                 "operationId": "create-token",
+                "parameters": [
+                    {
+                        "description": "Create new token",
+                        "name": "token",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateTokenRequest"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.CreateTokenResponse"
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/responses.JSONSuccessResult"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "$ref": "#/definitions/models.CreateTokenResponse"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/models.CreateTokenResponse"
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/responses.JSONSuccessResult"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/models.CreateTokenResponse"
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/responses.JSONInternalErrorResult"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     }
                 }
@@ -67,6 +126,19 @@ var doc = `{
         }
     },
     "definitions": {
+        "models.CreateTokenRequest": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "description": "Password type is string and we validated",
+                    "type": "string"
+                },
+                "username": {
+                    "description": "Username type is string and we validated",
+                    "type": "string"
+                }
+            }
+        },
         "models.CreateTokenResponse": {
             "type": "object",
             "properties": {
@@ -77,6 +149,34 @@ var doc = `{
                 "token": {
                     "description": "Token type is string",
                     "type": "string"
+                }
+            }
+        },
+        "responses.JSONInternalErrorResult": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "example": 500
+                },
+                "data": {},
+                "message": {
+                    "type": "string",
+                    "example": "Internal Error"
+                }
+            }
+        },
+        "responses.JSONSuccessResult": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "example": 200
+                },
+                "data": {},
+                "message": {
+                    "type": "string",
+                    "example": "Success"
                 }
             }
         }

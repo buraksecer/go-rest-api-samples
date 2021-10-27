@@ -1,5 +1,14 @@
 basePath: /
 definitions:
+  models.CreateTokenRequest:
+    properties:
+      password:
+        description: Password type is string and we validated
+        type: string
+      username:
+        description: Username type is string and we validated
+        type: string
+    type: object
   models.CreateTokenResponse:
     properties:
       success:
@@ -7,6 +16,26 @@ definitions:
         type: boolean
       token:
         description: Token type is string
+        type: string
+    type: object
+  responses.JSONInternalErrorResult:
+    properties:
+      code:
+        example: 500
+        type: integer
+      data: {}
+      message:
+        example: Internal Error
+        type: string
+    type: object
+  responses.JSONSuccessResult:
+    properties:
+      code:
+        example: 200
+        type: integer
+      data: {}
+      message:
+        example: Success
         type: string
     type: object
 info:
@@ -28,20 +57,50 @@ paths:
       - application/json
       description: Create new token
       operationId: create-token
+      parameters:
+      - description: Create new token
+        in: body
+        name: token
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateTokenRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.CreateTokenResponse'
+            allOf:
+            - $ref: '#/definitions/responses.JSONSuccessResult'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/models.CreateTokenResponse'
+                message:
+                  type: string
+              type: object
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/models.CreateTokenResponse'
+            allOf:
+            - $ref: '#/definitions/responses.JSONSuccessResult'
+            - properties:
+                code:
+                  type: integer
+                message:
+                  type: string
+              type: object
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/models.CreateTokenResponse'
+            allOf:
+            - $ref: '#/definitions/responses.JSONInternalErrorResult'
+            - properties:
+                code:
+                  type: integer
+                message:
+                  type: string
+              type: object
       summary: Create new token
 swagger: "2.0"

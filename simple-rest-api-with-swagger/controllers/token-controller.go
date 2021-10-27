@@ -6,7 +6,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// We sould keep service in this struct
 type TokenController struct {
 	service services.TokenService
 }
@@ -17,7 +16,7 @@ func NewTokenController(service services.TokenService) Controller {
 
 func (t *TokenController) Register(engine *gin.Engine) {
 	// We should register method with request type in Gin Engine
-	engine.GET("/createToken", t.CreateToken)
+	engine.POST("/create-token", t.CreateToken)
 }
 
 func (t *TokenController) CreateToken(ctx *gin.Context) {
@@ -33,14 +32,6 @@ func (t *TokenController) CreateToken(ctx *gin.Context) {
 		})
 		return
 	}
-	// We call create token method from service.
-	response := t.service.CreateToken(&request)
 
-	// If service' response failed, we returned fail response with HttpStatus code is 400
-	if !response.Success {
-		ctx.JSON(400, response)
-		return
-	}
-	// We returned success response with HttpStatus code is 200
-	ctx.JSON(200, response)
+	t.service.CreateToken(ctx, &request)
 }

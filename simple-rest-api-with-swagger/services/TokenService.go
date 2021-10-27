@@ -3,11 +3,13 @@ package services
 import (
 	"fmt"
 	"github.com/buraksecer/go-rest-api-samples/simple-rest-api-with-swagger/models"
+	"github.com/buraksecer/go-rest-api-samples/simple-rest-api-with-swagger/responses"
+	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
 
 type TokenService interface {
-	CreateToken(request *models.CreateTokenRequest) *models.CreateTokenResponse
+	CreateToken(c *gin.Context, request *models.CreateTokenRequest)
 }
 
 type TokenServiceImpl struct {
@@ -23,11 +25,12 @@ func NewTokenService() TokenService {
 // @ID create-token
 // @Accept json
 // @Produce json
-// @Success 200 {object} models.CreateTokenResponse
-// @Success 400 {object} models.CreateTokenResponse
-// @Success 500 {object} models.CreateTokenResponse
+// @Param create token body models.CreateTokenRequest true "Create new token"
+// @Success 200 {object} responses.JSONSuccessResult{data=models.CreateTokenResponse,code=int,message=string}
+// @Success 400 {object} responses.JSONSuccessResult{code=int,message=string}
+// @Success 500 {object} responses.JSONInternalErrorResult{code=int,message=string}
 // @Router /create-token [post]
-func (t *TokenServiceImpl) CreateToken(request *models.CreateTokenRequest) *models.CreateTokenResponse {
+func (t *TokenServiceImpl) CreateToken(c *gin.Context, request *models.CreateTokenRequest) {
 	fmt.Println("Create Token Request, username:" + request.Username + " Password: " + request.Password)
 	// We created fail case response
 	response := &models.CreateTokenResponse{
@@ -39,8 +42,8 @@ func (t *TokenServiceImpl) CreateToken(request *models.CreateTokenRequest) *mode
 		response.Success = true
 		response.Token = uuid.New().String()
 		// We validated username and password and we returned success case response.
-		return response
+		responses.SuccessResponse(c, response)
 	}
 	// We did not validate username and password and we returned fail case response.
-	return response
+	responses.FailResponse(c, 400, "Something Wrong!")
 }
