@@ -43,6 +43,7 @@ func (t *TokenServiceImpl) CreateToken(c *gin.Context, request *models.CreateTok
 		response.Token = uuid.New().String()
 		// We validated username and password and we returned success case response.
 		responses.SuccessResponse(c, response)
+		return
 	}
 	// We did not validate username and password and we returned fail case response.
 	responses.FailResponse(c, 400, "Something Wrong!")

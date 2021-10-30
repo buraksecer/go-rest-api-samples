@@ -3,9 +3,11 @@ definitions:
   models.CreateTokenRequest:
     properties:
       password:
+        default: "1"
         description: Password type is string and we validated
         type: string
       username:
+        default: buraksecer
         description: Username type is string and we validated
         type: string
     type: object

@@ -27,8 +27,6 @@ import (
 //go:generate swag init
 func main() {
 	//(http://localhost:8080/swagger/index.html)
-	//username:burak
-	//password:1
 	fmt.Println("Api is starting...")
 
 	router := gin.Default()

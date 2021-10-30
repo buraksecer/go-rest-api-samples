@@ -131,11 +131,13 @@ var doc = `{
             "properties": {
                 "password": {
                     "description": "Password type is string and we validated",
-                    "type": "string"
+                    "type": "string",
+                    "default": "1"
                 },
                 "username": {
                     "description": "Username type is string and we validated",
-                    "type": "string"
+                    "type": "string",
+                    "default": "buraksecer"
                 }
             }
         },
@@ -234,5 +236,5 @@ func (s *s) ReadDoc() string {
 }
 
 func init() {
-	swag.Register(swag.Name, &s{})
+	swag.Register("swagger", &s{})
 }
