@@ -14,9 +14,11 @@ func NewTokenController(service services.TokenService) Controller {
 	return &TokenController{service: service}
 }
 
+
 func (t *TokenController) Register(engine *gin.Engine) {
 	// We should register method with request type in Gin Engine
 	engine.POST("/create-token", t.CreateToken)
+	engine.GET("/get-token", t.GetToken)
 }
 
 func (t *TokenController) CreateToken(ctx *gin.Context) {
@@ -34,4 +36,8 @@ func (t *TokenController) CreateToken(ctx *gin.Context) {
 	}
 
 	t.service.CreateToken(ctx, &request)
+}
+
+func (t *TokenController) GetToken(ctx *gin.Context) {
+	t.service.GetToken(ctx)
 }

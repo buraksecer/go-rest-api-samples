@@ -10,6 +10,7 @@ import (
 
 type TokenService interface {
 	CreateToken(c *gin.Context, request *models.CreateTokenRequest)
+	GetToken(c *gin.Context)
 }
 
 type TokenServiceImpl struct {
@@ -47,4 +48,19 @@ func (t *TokenServiceImpl) CreateToken(c *gin.Context, request *models.CreateTok
 	}
 	// We did not validate username and password and we returned fail case response.
 	responses.FailResponse(c, 400, "Something Wrong!")
+}
+
+// GetToken godoc
+// @Summary Get token
+// @Description Get token
+// @ID get-token
+// @Accept json
+// @Produce json
+// @Success 200 {object} responses.JSONSuccessResult{data=models.CreateTokenResponse,code=int,message=string}
+// @Success 400 {object} responses.JSONSuccessResult{code=int,message=string}
+// @Success 500 {object} responses.JSONInternalErrorResult{code=int,message=string}
+// @Router /get-token [get]
+func (t *TokenServiceImpl) GetToken(c *gin.Context)  {
+	fmt.Println("Get token request")
+	responses.SuccessResponse(c,uuid.New().String())
 }
