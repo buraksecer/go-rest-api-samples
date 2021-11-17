@@ -8,6 +8,7 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/swaggo/files v0.0.0-20210815190702-a29dd2bc99b2
 	github.com/swaggo/gin-swagger v1.3.2
+	github.com/swaggo/swag v1.7.4
 )
 
 require (
@@ -35,7 +36,6 @@ require (
 	github.com/pkg/errors v0.8.1 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
-	github.com/swaggo/swag v1.7.4 // indirect
 	github.com/ugorji/go/codec v1.1.7 // indirect
 	github.com/urfave/cli/v2 v2.3.0 // indirect
 	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9 // indirect
